@@ -1,0 +1,14 @@
+[Unit]
+Description=Backups collector
+
+[Service]
+User=root
+Group=root
+ExecStart=/usr/bin/go /opt/backups-collector/collect.go
+WorkingDirectory=/opt/backups-collector
+Restart=always
+RestartSec=40
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
