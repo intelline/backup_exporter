@@ -9,6 +9,7 @@ import (
     "io/ioutil"
     "encoding/json"
 )
+
 const ShellToUse = "bash"
 
 func Shellout(command string) (error, string, string) {
@@ -75,9 +76,9 @@ func main() {
     RESULT += fmt.Sprintf("xtrabackup_size{type=\"incr\",name=\"%s\"} %s\n", lastIncrBackupName, sizeIncr)
 
     // Save data in file
-    err1 := os.WriteFile("./xtrabackup.prom", []byte(RESULT), 0666) 
+    err1 := ioutil.WriteFile("./xtrabackup.prom", []byte(RESULT), 0666) 
     if err1 != nil {
-		  log.Fatal(err1)
+	log.Fatal(err1)
     }
     
     fmt.Println(RESULT)
